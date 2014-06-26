@@ -8,6 +8,9 @@ var _ = require( 'lodash' )
 var util = require( 'util' )
 
 
+var cache = {}
+
+
 function stripLoc( node ) {
 
 	return traverse( node ).map( function( node ) {
@@ -50,15 +53,23 @@ function getTrace( context ) {
 
 exports = module.exports = function sourcetrace( search, source ) {
 
+	var parsed
+
 	search = esprima.parse( search ).body[0].expression
 
 	if ( search.type === 'ExpressionStatement' ) {
 		search = search.expression
 	}
 
-	return traverse( esprima.parse( source, { loc: true } ) ).reduce( function ( result, node ) {
+	parsed = cache[ source ]
 
-		if ( _.isEqual( stripLoc( node ) , search ) ) {
+	if ( !parsed ) {
+		cache[ source ] = parsed = esprima.parse( source, { loc: true } )
+	}
+
+	return traverse( parsed ).reduce( function ( result, node ) {
+
+		if ( node && node.type === search.type && _.isEqual( stripLoc( node ) , search ) ) {
 			result.push( getTrace( this ) )
 		}
 
