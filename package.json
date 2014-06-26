@@ -2,7 +2,7 @@
 	"name": "sourcetrace",
 	"version": "0.1.0",
 	"description": "Generate a \"stacktrace\" into JavaScript source code, finding the lines that start blocks and statements containing a given source pattern or line.",
-	"main": "src/index.js",
+	"main": "index.js",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/jrajav/sourcetrace.git"
@@ -21,11 +21,13 @@
 		"test": "node_modules/eslint/bin/eslint.js . && node_modules/mocha/bin/mocha --reporter spec test.js"
 	},
 	"keywords": [
-		"pojo",
-		"json",
-		"object",
-		"map",
-		"convert"
+		"esprima",
+		"source",
+		"code"
+		"trace",
+		"search",
+		"traverse",
+		"walk"
 	],
 	"author": "Jonathan Rajavuori <jrajav@gmail.com>",
 	"license": "MIT",
