@@ -6,7 +6,7 @@
 
 var expect = require( 'chai' ).expect
 
-var sourcetrace = require('./index')
+var sourcetrace = require( './sourcetrace' )
 
 
 describe( 'sourcetrace', function () {
